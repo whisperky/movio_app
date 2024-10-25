@@ -13,6 +13,13 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
     },
+    colors: {
+      primary: "#2BD17E",
+      error: "#EB5757",
+      mainColor: "#093545",
+      inputColor: "#224957",
+      cardColor: "#092C39",
+    },
   },
   plugins: [],
 };
