@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Image,
-  Text,
-  Button,
-  Flex,
-  Grid,
-  AspectRatio,
-} from "@chakra-ui/react";
+import { Box, Text, Button, Flex, Grid } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
