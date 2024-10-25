@@ -44,7 +44,7 @@ export default function MoviesPage() {
     <Box minH="100vh" pt="50px" pb="200px" px={5} className="font-montserrat">
       <Box maxW="1200px" mx="auto">
         {/* Header */}
-        <Flex justifyContent="space-between" alignItems="baseline" py="100px">
+        <Flex className="flex justify-between items-center" py="100px">
           <Flex alignItems="baseline" gap={4}>
             <Text fontSize="5xl" color="white" fontWeight="600">
               My Videos
@@ -52,11 +52,12 @@ export default function MoviesPage() {
             <Add />
           </Flex>
           <Button
+            className="items-center"
             variant="ghost"
             color="white"
             onClick={() => router.push("/login")}
           >
-            Logout
+            <Text className="hidden sm:flex">Logout</Text>
             <Logout />
           </Button>
         </Flex>
