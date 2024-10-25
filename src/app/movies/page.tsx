@@ -1,35 +1,43 @@
 "use client";
 
-// pages/movies.tsx
 import {
   Box,
   Image,
-  SimpleGrid,
   Text,
-  Heading,
   Button,
-  HStack,
-  VStack,
-  Grid,
   Flex,
+  Grid,
+  AspectRatio,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 import { Add, Logout } from "@/components/icons";
-// Define the Movie type
-type Movie = {
-  title: string;
-  year: string;
-  image: string;
-};
+
+import { sampleVideos, Video } from "@/services/tempData";
+import { MovieCard } from "@/components/MovieCard";
+
+// Update the Video type
 
 export default function MoviesPage() {
-  // Define an array of movies, here filled with placeholder data
+  const router = useRouter();
   const [page, setPage] = useState<number>(1);
-  const movies: Movie[] = Array(8).fill({
-    title: "Movie 1",
-    year: "2021",
-    image: "https://via.placeholder.com/150", // Replace with your actual image URLs
-  });
+  const [videos, setVideos] = useState<Video[]>([]);
+  const itemsPerPage = 8;
+
+  useEffect(() => {
+    const fetchVideos = () => {
+      setVideos(sampleVideos);
+    };
+
+    fetchVideos();
+  }, []);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(videos.length / itemsPerPage);
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentVideos = videos.slice(startIndex, endIndex);
 
   // Handle pagination logic
   const handlePrev = () => {
@@ -37,32 +45,30 @@ export default function MoviesPage() {
   };
 
   const handleNext = () => {
-    setPage(page + 1); // Assuming there are more pages available
+    if (page < totalPages) setPage(page + 1);
   };
 
   return (
-    <Box minH="100vh" pt="50px" pb="200px" px={5}>
+    <Box minH="100vh" pt="50px" pb="200px" px={5} className="font-montserrat">
       <Box maxW="1200px" mx="auto">
         {/* Header */}
-        <Flex
-          justifyContent="space-between"
-          alignItems="baseline"
-          className="font-montserrat"
-          py="100px"
-        >
+        <Flex justifyContent="space-between" alignItems="baseline" py="100px">
           <Flex alignItems="baseline" gap={4}>
             <Text fontSize="5xl" color="white" fontWeight="600">
-              My Movies
+              My Videos
             </Text>
             <Add />
           </Flex>
-          <Button variant="ghost" color="white">
+          <Button
+            variant="ghost"
+            color="white"
+            onClick={() => router.push("/login")}
+          >
             Logout
             <Logout />
           </Button>
         </Flex>
 
-        {/* Movie Grid */}
         <Grid
           templateColumns={[
             "repeat(2, 1fr)",
@@ -72,40 +78,22 @@ export default function MoviesPage() {
           ]}
           gap={6}
         >
-          {movies.map((movie, index) => (
-            <Box
-              key={index}
-              bg="whiteAlpha.200"
-              borderRadius="lg"
-              overflow="hidden"
-              shadow="md"
-            >
-              <Image
-                src={movie.image}
-                alt={movie.title}
-                objectFit="cover"
-                h="250px"
-                w="full"
-              />
-              <VStack p={4} align="start">
-                <Text fontWeight="bold" color="white">
-                  {movie.title}
-                </Text>
-                <Text fontSize="sm" color="gray.300">
-                  {movie.year}
-                </Text>
-              </VStack>
-            </Box>
+          {currentVideos.map((video) => (
+            <MovieCard video={video} key={video.id} />
           ))}
         </Grid>
 
         {/* Pagination */}
-        <Flex justifyContent="center" mt={8} gap={4}>
+        <Flex justifyContent="center" mt={8} gap={4} color="white">
           <Button onClick={handlePrev} disabled={page === 1} colorScheme="teal">
             Prev
           </Button>
-          <Text color="white">{page}</Text>
-          <Button onClick={handleNext} colorScheme="teal">
+          <Text alignSelf="center">{`${page} / ${totalPages}`}</Text>
+          <Button
+            onClick={handleNext}
+            disabled={page === totalPages}
+            colorScheme="teal"
+          >
             Next
           </Button>
         </Flex>
