@@ -1,10 +1,11 @@
-import { useRouter } from "next/router";
+"use client";
+
+import React from "react";
 import {
   Box,
   AspectRatio,
   Heading,
   Text,
-  VStack,
   Container,
   Flex,
 } from "@chakra-ui/react";
@@ -14,9 +15,9 @@ import { Video } from "@/services/tempData";
 // Assume we have a function to fetch video details by ID
 import { sampleVideos } from "@/services/tempData";
 
-const MovieView = () => {
-  const router = useRouter();
-  const { id } = router.query;
+const MovieView = ({ params }: { params: Promise<{ id: string }> }) => {
+  // const router = useRouter();
+  const { id } = React.use(params);
   const [video, setVideo] = useState<Video | null>(null);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const MovieView = () => {
           <Box bg="#092C39" borderRadius="lg" overflow="hidden">
             {/* Replace with actual video player component */}
             <iframe
-              src={`https://www.youtube.com/embed/${video.youtubeId}`}
+              src={video.url}
               title={video.title}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
