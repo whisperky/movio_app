@@ -25,6 +25,7 @@ const MovieView = ({ params }: { params: Promise<{ id: string }> }) => {
       // Fetch video details when the component mounts or ID changes
       const video = sampleVideos.find((video) => video.id === Number(id));
       setVideo(video || null);
+      console.log("video", video);
     }
   }, [id]);
 
@@ -32,18 +33,9 @@ const MovieView = ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <Container maxW="container.xl" py={8}>
-      <Flex gap={8} align="stretch">
-        <AspectRatio ratio={16 / 9} maxH="70vh">
-          <Box bg="#092C39" borderRadius="lg" overflow="hidden">
-            {/* Replace with actual video player component */}
-            <iframe
-              src={video.url}
-              title={video.title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </Box>
+      <Flex direction={"column"} gap={8} align="stretch">
+        <AspectRatio ratio={16 / 9} maxH="70vh" width={"100%"}>
+          <video src={video.url} controls title={video.title} />
         </AspectRatio>
 
         <Flex direction="column" align="start" gap={4}>
