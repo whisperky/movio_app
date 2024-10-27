@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Box, Button, Flex, Heading, Input } from "@chakra-ui/react";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -10,8 +11,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  const router = useRouter();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    router.push("/movies");
     console.log({ email, password, rememberMe });
     // Here you can handle form submission, like sending data to an API.
   };
@@ -88,6 +92,7 @@ export default function LoginPage() {
                 _hover={{ bg: "#2BD17Edd" }}
                 fontSize="16px"
                 fontWeight="medium"
+                onClick={handleSubmit}
               >
                 Login
               </Button>
