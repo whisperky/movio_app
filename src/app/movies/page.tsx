@@ -49,8 +49,9 @@ export default function MoviesPage() {
             <Text fontSize="5xl" color="white" fontWeight="600">
               My Videos
             </Text>
-
-            <Add />
+            <Button onClick={() => router.push("/create-movie")}>
+              <Add />
+            </Button>
           </Flex>
           <Button
             className="items-center"
