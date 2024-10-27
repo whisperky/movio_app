@@ -14,9 +14,13 @@ export default function LoginPage() {
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push("/movies");
+    console.log(e.preventDefault());
     console.log({ email, password, rememberMe });
+    if (email && password) {
+      router.push("/movies");
+    } else {
+      alert("Please enter email and password");
+    }
     // Here you can handle form submission, like sending data to an API.
   };
 
