@@ -1,14 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  Box,
-  AspectRatio,
-  Heading,
-  Text,
-  Container,
-  Flex,
-} from "@chakra-ui/react";
+import { Box, AspectRatio, Heading, Container, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { Video } from "@/services/tempData";
 
@@ -32,18 +25,15 @@ const MovieView = ({ params }: { params: Promise<{ id: string }> }) => {
   if (!video) return <Box>Loading...</Box>;
 
   return (
-    <Container maxW="container.xl" py={8}>
-      <Flex direction={"column"} gap={8} align="stretch">
-        <AspectRatio ratio={16 / 9} maxH="70vh" width={"100%"}>
-          <video src={video.url} controls title={video.title} />
-        </AspectRatio>
-
-        <Flex direction="column" align="start" gap={4}>
-          <Heading color="white">{video.title}</Heading>
-          <Text color="white" fontSize="lg">
-            {video.year}
-          </Text>
-          {/* <Text color="white">{video.description}</Text> */}
+    <Container maxW="container.xl" py={20}>
+      <Flex direction={"column"} gap={20} align="stretch">
+        <Heading color="white" fontSize={"4xl"}>
+          {video.title}, {video.year}
+        </Heading>
+        <Flex justify={"center"}>
+          <AspectRatio ratio={16 / 9} maxH="70vh" width={"80%"}>
+            <video src={video.url} controls title={video.title} />
+          </AspectRatio>
         </Flex>
       </Flex>
     </Container>
