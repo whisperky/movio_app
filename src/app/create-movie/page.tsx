@@ -41,7 +41,7 @@ const CreateMoviePage: React.FC = () => {
   };
 
   return (
-    <Box mx="auto" mt="20px" padding="20px" boxShadow="md">
+    <Box mx="auto" mt="20px" padding={"120px"} boxShadow="md">
       <Heading
         size="lg"
         textAlign="left"
