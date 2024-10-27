@@ -1,8 +1,9 @@
-import type { ButtonProps as ChakraCloseButtonProps } from "@chakra-ui/react"
-import { IconButton as ChakraIconButton } from "@chakra-ui/react"
-import { forwardRef } from "react"
-import { LuX } from "react-icons/lu"
+import type { ButtonProps as ChakraCloseButtonProps } from "@chakra-ui/react";
+import { IconButton as ChakraIconButton } from "@chakra-ui/react";
+import { forwardRef } from "react";
+import { LuX } from "react-icons/lu";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface CloseButtonProps extends ChakraCloseButtonProps {}
 
 export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(
@@ -11,6 +12,6 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(
       <ChakraIconButton variant="ghost" aria-label="Close" ref={ref} {...props}>
         {props.children ?? <LuX />}
       </ChakraIconButton>
-    )
-  },
-)
+    );
+  }
+);
