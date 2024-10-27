@@ -108,15 +108,18 @@ const EditMoviePage: React.FC = () => {
             onChange={handleTitleChange}
             variant="subtle"
             size="lg"
+            p={6}
             className="bg-[#224957] text-[white]"
           />
           <Input
+            min={2000}
             placeholder="Publishing year"
             value={year}
             onChange={handleYearChange}
             variant="subtle"
             size="lg"
             type="number"
+            p={6}
             className="bg-[#224957] text-[white]"
           />
 
