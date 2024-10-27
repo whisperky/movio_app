@@ -49,7 +49,7 @@ const CreateMoviePage: React.FC = () => {
   };
 
   return (
-    <Box mx="auto" mt="20px" padding={"120px"} boxShadow="md">
+    <Box mx="auto" padding={{ base: "20px", sm: "120px" }} boxShadow="md">
       <Heading
         size="lg"
         textAlign="left"
@@ -67,8 +67,8 @@ const CreateMoviePage: React.FC = () => {
             onChange={handleImageChange}
             style={{
               position: "absolute",
-              width: "100%",
-              height: "100%",
+              width: "calc(100vw - 140px)",
+              height: "calc(100vh - 200px)",
               opacity: 0,
               cursor: "pointer",
               zIndex: 1,
