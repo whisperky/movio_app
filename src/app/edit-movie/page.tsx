@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, ChangeEvent } from "react";
 import {
   Box,
@@ -12,6 +13,8 @@ import {
 } from "@chakra-ui/react";
 
 const EditMoviePage: React.FC = () => {
+  const router = useRouter();
+
   // State for inputs
   const [title, setTitle] = useState<string>("");
   const [year, setYear] = useState<string>("");
@@ -35,17 +38,22 @@ const EditMoviePage: React.FC = () => {
 
   // Actions for Submit and Cancel
   const handleSubmit = () => {
-    console.log({ title, year, image });
-    setTitle("");
-    setYear("");
-    setImage(null);
-    alert("Movie created successfully!");
+    if (title && year && image) {
+      console.log({ title, year, image });
+      setTitle("");
+      setYear("");
+      setImage(null);
+      alert("Movie created successfully!");
+    } else {
+      alert("Please fill in all fields and upload an image.");
+    }
   };
 
   const handleCancel = () => {
     setTitle("");
     setYear("");
     setImage(null);
+    router.push("/movies");
   };
 
   return (
@@ -93,7 +101,7 @@ const EditMoviePage: React.FC = () => {
           </Box>
         </Box>
 
-        <Flex direction="column" gap={4} flex={{ sm: 1 }}>
+        <Flex direction="column" gap={4} flex={{ sm: 1 }} zIndex={2}>
           <Input
             placeholder="Title"
             value={title}

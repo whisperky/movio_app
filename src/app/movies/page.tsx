@@ -49,6 +49,7 @@ export default function MoviesPage() {
             <Text fontSize="5xl" color="white" fontWeight="600">
               My Videos
             </Text>
+
             <Add />
           </Flex>
           <Button
