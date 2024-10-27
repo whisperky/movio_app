@@ -85,7 +85,6 @@ const EditMoviePage: React.FC = () => {
             overflow="hidden"
             position="relative"
           >
-            {/* <Text color="gray.500">Drop an image here</Text> */}
             {image ? (
               <Image src={image} alt="Uploaded preview" />
             ) : (

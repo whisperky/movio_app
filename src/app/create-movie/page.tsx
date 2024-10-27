@@ -1,7 +1,15 @@
 "use client";
 
 import { useState, ChangeEvent } from "react";
-import { Box, Button, Heading, Input, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  Input,
+  Flex,
+  Text,
+  Image,
+} from "@chakra-ui/react";
 
 const CreateMoviePage: React.FC = () => {
   // State for inputs
@@ -63,6 +71,7 @@ const CreateMoviePage: React.FC = () => {
               height: "100%",
               opacity: 0,
               cursor: "pointer",
+              zIndex: 1,
             }}
           />
           <Box
@@ -73,8 +82,14 @@ const CreateMoviePage: React.FC = () => {
             alignItems="center"
             justifyContent="center"
             backgroundColor="transparent"
+            overflow="hidden"
+            position="relative"
           >
-            <Text color="gray.500">Drop an image here</Text>
+            {image ? (
+              <Image src={image} alt="Uploaded preview" />
+            ) : (
+              <Text color="gray.500">Drop an image here</Text>
+            )}
           </Box>
         </Box>
 
