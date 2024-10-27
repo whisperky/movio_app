@@ -51,7 +51,7 @@ const EditMoviePage: React.FC = () => {
         Edit
       </Heading>
 
-      <Flex direction={{ base: "column", sm: "row" }} gap={4}>
+      <Flex direction={{ base: "column", sm: "row" }} gap={20}>
         <Box flex={{ sm: 1 }}>
           <Input
             type="file"
